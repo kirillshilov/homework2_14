@@ -1,3 +1,5 @@
+package String;
+
 import java.util.Arrays;
 
 public class StringList implements StringListInterface {
@@ -45,7 +47,7 @@ public class StringList implements StringListInterface {
 
     @Override
     public String set(int index, String item) {
-        if (index > stringList.length || index > count) {
+        if ((index > stringList.length) || (index > count)) {
             throw new IndexOutOfBoundsException();
         }
         stringList[index] = item;
@@ -54,7 +56,7 @@ public class StringList implements StringListInterface {
 
     @Override
     public String remove(String item) {
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count ; i++) {
             if (stringList[i].equals(item)) {
                 stringList[i] = "null";
                 for (int j = i; j < count; j++) {
@@ -150,7 +152,7 @@ if (count != otherList.size()){
 
     @Override
     public String clear() {
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < stringList.length; i++) {
             stringList[i] = "null";
         }
         return "Cleared";
