@@ -5,20 +5,24 @@ import java.util.Arrays;
 
 public class IntegerList implements IntegerListInterface{
 
-    private final Integer [] integerList;
+    private  Integer [] integerList;
     private static int count = 0;
 
 
-    public IntegerList() {
-        integerList = new Integer [10];
+    public IntegerList(int size) {
+        integerList = new Integer [size];
         Arrays.fill(integerList, 0);
     }
 
 
     @Override
     public Integer add(Integer item) {
+
         if (item == null) {
             throw new NullParamExceptoins("параметры не заданы");
+        }
+        if (count > integerList.length - 2 ){
+            drow();
         }
         for (int i = 0; i < integerList.length; i++) {
             if (integerList[i].equals(0)) {
@@ -87,7 +91,7 @@ public class IntegerList implements IntegerListInterface{
 
     @Override
     public boolean contains(Integer item) {
-        IntegerList.sortInsertion(integerList);
+        Arrays.sort(integerList);
        return (0 <(Arrays.binarySearch(integerList, item)));
     }
 
@@ -170,36 +174,13 @@ public class IntegerList implements IntegerListInterface{
     public int hashCode() {
         return Arrays.hashCode(integerList);
     }
-
-
-    public static void sortInsertion(Integer [] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            int temp = arr[i];
-            int j = i;
-            while (j > 0 && arr[j - 1] >= temp) {
-                arr[j] = arr[j - 1];
-                j--;
-            }
-            arr[j] = temp;
+    private void drow (){
+        int temp = integerList.length * 2 - (integerList.length / 2);
+        IntegerListInterface [] ne = new IntegerList [temp];
+        for (int i = 0; i < integerList.length; i++) {
+            ne[i].add(integerList [i]) ;
         }
-    }
-
-    private static int[] generateRandomArray() {
-        java.util.Random random = new java.util.Random();
-        int[] arr = new int[100000];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = random.nextInt(100_000) + 100_000;
-        }
-        return arr;
-    }
-
-    public static void main(String[] args) {
-
-        int[] arr = generateRandomArray();
-
-        long start = System.currentTimeMillis();
-
-        System.out.println(System.currentTimeMillis() - start);
 
     }
+
 }

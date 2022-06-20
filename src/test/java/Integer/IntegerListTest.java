@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class IntegerListTest {
 
-    private final IntegerListInterface test = new IntegerList();
+    private final IntegerListInterface test = new IntegerList(10);
 
     @BeforeEach
     void clearParam(){
@@ -140,7 +140,7 @@ class IntegerListTest {
 
     @Test
     void shouldReturnFalseWhenLenghtStringListsIsDeferent() {
-        IntegerListInterface one = new IntegerList();
+        IntegerListInterface one = new IntegerList(10);
         test.add(5);
         assertNotEquals(test, one);
 
@@ -148,7 +148,7 @@ class IntegerListTest {
 
     @Test
     void shouldReturnTrueWhenStringLIstIsEquals() {
-        IntegerListInterface one = new IntegerList();
+        IntegerListInterface one = new IntegerList(10);
         one.add(5);
         test.add(5);
         assertEquals(test, one);
